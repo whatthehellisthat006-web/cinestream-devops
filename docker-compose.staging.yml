@@ -1,0 +1,67 @@
+# ==============================================================================
+# CineStream - Staging Deployment Compose (Atelier 5)
+# Uses ONLY immutable pre-published GHCR images (NO "build:" section!)
+# Usage: APP_VERSION=v1.0.0 docker compose -f docker-compose.staging.yml up -d
+# ==============================================================================
+
+services:
+  db:
+    image: mysql:8.0.40
+    container_name: cinestream-staging-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-cinestream_db}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-cinestream_staging_root}
+      MYSQL_USER: ${MYSQL_USER:-cinestream}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-cinestream_staging_pass}
+    volumes:
+      - cinestream_staging_db_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./database/data.sql:/docker-entrypoint-initdb.d/02-data.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-cinestream_staging_root}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - cinestream-staging-net
+
+  backend:
+    image: ghcr.io/whatthehellisthat006-web/cinestream-backend:${APP_VERSION:?APP_VERSION must be set (e.g. v1.0.0)}
+    container_name: cinestream-staging-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: 8081
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${MYSQL_DATABASE:-cinestream_db}?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&characterEncoding=UTF-8
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER:-cinestream}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD:-cinestream_staging_pass}
+      JWT_SECRET: ${JWT_SECRET:-staging_jwt_secret_key_change_in_production_at_least_32_chars}
+      JWT_EXPIRATION_MS: ${JWT_EXPIRATION_MS:-86400000}
+      APP_VERSION: ${APP_VERSION}
+    ports:
+      - "8081:8081"
+    networks:
+      - cinestream-staging-net
+
+  frontend:
+    image: ghcr.io/whatthehellisthat006-web/cinestream-frontend:${APP_VERSION:?APP_VERSION must be set (e.g. v1.0.0)}
+    container_name: cinestream-staging-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "4200:8080"
+    networks:
+      - cinestream-staging-net
+
+volumes:
+  cinestream_staging_db_data:
+
+networks:
+  cinestream-staging-net:
+    driver: bridge
