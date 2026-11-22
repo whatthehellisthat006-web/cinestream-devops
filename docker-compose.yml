@@ -1,0 +1,80 @@
+# ==============================================================================
+# CineStream - Docker Compose Stack (Atelier 4)
+# - DB port NOT published externally
+# - Persistent MySQL volume
+# - Service-name networking (db -> backend -> frontend)
+# - Startup conditioned on healthchecks (service_healthy)
+# ==============================================================================
+
+services:
+  db:
+    image: mysql:8.0.40
+    container_name: cinestream-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-cinestream_db}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-cinestream_root_local}
+      MYSQL_USER: ${MYSQL_USER:-cinestream}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-cinestream_pass_local}
+    volumes:
+      - cinestream_db_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./database/data.sql:/docker-entrypoint-initdb.d/02-data.sql:ro
+    # NOTE: No "ports:" here — MySQL is strictly isolated inside cinestream-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-cinestream_root_local}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - cinestream-net
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: cinestream-backend:${IMAGE_TAG:-1.0.0}
+    container_name: cinestream-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: 8081
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${MYSQL_DATABASE:-cinestream_db}?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&characterEncoding=UTF-8
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER:-cinestream}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD:-cinestream_pass_local}
+      JWT_SECRET: ${JWT_SECRET:-local_dev_only_jwt_secret_key_change_in_production_minimum_32_chars}
+      JWT_EXPIRATION_MS: ${JWT_EXPIRATION_MS:-86400000}
+      R2_ACCOUNT_ID: ${R2_ACCOUNT_ID:-}
+      R2_ACCESS_KEY_ID: ${R2_ACCESS_KEY_ID:-}
+      R2_SECRET_ACCESS_KEY: ${R2_SECRET_ACCESS_KEY:-}
+      R2_BUCKET_NAME: ${R2_BUCKET_NAME:-cinestream-videos}
+      R2_ENDPOINT: ${R2_ENDPOINT:-}
+    ports:
+      - "8081:8081"
+    networks:
+      - cinestream-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: cinestream-frontend:${IMAGE_TAG:-1.0.0}
+    container_name: cinestream-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "4200:8080"
+    networks:
+      - cinestream-net
+
+volumes:
+  cinestream_db_data:
+
+networks:
+  cinestream-net:
+    driver: bridge
