@@ -100,6 +100,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: publish
     environment: staging
+    env:
+      APP_VERSION: ${{ needs.publish.outputs.version }}
 
     steps:
       - name: Checkout tag
@@ -113,8 +115,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy immutable version ${{ needs.publish.outputs.version }} to staging
-        env:
-          APP_VERSION: ${{ needs.publish.outputs.version }}
         run: |
           bash scripts/deploy-staging.sh "${APP_VERSION}"
 
