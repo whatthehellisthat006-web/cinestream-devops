@@ -69,6 +69,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/api/actors/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/directors/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/stream/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/actuator/health", "/actuator/health/**").permitAll()
                 .requestMatchers("/error").permitAll()
 
                 // Admin endpoints (US038)
