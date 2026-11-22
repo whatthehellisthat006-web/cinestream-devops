@@ -1,0 +1,48 @@
+<div class="genre-page-container container">
+  <div class="genre-header">
+    <div class="header-content">
+      <span class="badge-tag">Classification</span>
+      <h1 class="page-title">Genres Cinématographiques</h1>
+      <p class="page-desc">
+        Explorez notre catalogue à travers vos thématiques préférées : action, science-fiction, animation et plus encore.
+      </p>
+    </div>
+
+    <!-- Search Input -->
+    <div class="search-box">
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        placeholder="Rechercher un genre..."
+        class="search-input"
+      />
+    </div>
+  </div>
+
+  <div *ngIf="loading()" class="loading-state">
+    <div class="spinner"></div>
+    <p>Chargement des genres...</p>
+  </div>
+
+  <div *ngIf="!loading() && filteredGenres.length > 0" class="genres-grid">
+    <a
+      *ngFor="let genre of filteredGenres"
+      [routerLink]="['/catalogue']"
+      [queryParams]="{ genre: genre.id }"
+      class="genre-card"
+    >
+      <div class="genre-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      </div>
+      <h3 class="genre-title">{{ genre.name }}</h3>
+      <p class="genre-desc">{{ genre.description || 'Découvrez tous les titres classés sous ce genre.' }}</p>
+      <span class="view-link">Explorer les films & séries &rarr;</span>
+    </a>
+  </div>
+
+  <div *ngIf="!loading() && filteredGenres.length === 0" class="empty-state">
+    <p>Aucun genre ne correspond à "{{ searchQuery }}".</p>
+  </div>
+</div>

@@ -1,0 +1,220 @@
+-- CineStream Database Initial Data - Sprint 1 (Official & Local High-Res Assets)
+USE cinestream_db;
+
+-- 1. Genres
+INSERT INTO genre (id, name, description) VALUES
+(1, 'Action', 'Films et séries rythmés par des cascades, de la bravoure et des affrontements intenses.'),
+(2, 'Science-Fiction', 'Exploration de technologies avancées, de voyages spatiaux et d''avenirs dystopiques.'),
+(3, 'Drame', 'Récits profondément humains explorant les conflits moraux et les émotions complexes.'),
+(4, 'Comédie', 'Œuvres spirituelles et réjouissantes conçues pour divertir avec finesse et humour.'),
+(5, 'Thriller', 'Suspense haletant, rebondissements inattendus et atmosphères sous haute tension.'),
+(6, 'Aventure', 'Épopées grandioses, quêtes héroïques et découvertes de contrées inexplorées.'),
+(7, 'Animation', 'Chefs-d''œuvre visuels animés alliant créativité narrative et prouesses artistiques.'),
+(8, 'Fantastique', 'Univers mythologiques, magiques et surnaturels repoussant les frontières du réel.'),
+(9, 'Policier / Crime', 'Enquêtes criminelles captivantes, intrigues judiciaires et noirceur urbaine.');
+
+-- 2. Acteurs (avec portraits officiels haute résolution)
+INSERT INTO actor (id, name, bio, birth_date, photo_url) VALUES
+(1, 'Leonardo DiCaprio', 'Acteur et producteur américain récompensé aux Oscars, figure majeure du cinéma mondial contemporain.', '1974-11-11', '/assets/people/actor_1.jpg'),
+(2, 'Cillian Murphy', 'Acteur irlandais multiprimé aux Oscars et BAFTA, célèbre pour son charisme magnétique et sa versatilité.', '1976-05-25', '/assets/people/actor_2.jpg'),
+(3, 'Matthew McConaughey', 'Acteur américain oscarisé, reconnu pour son intensité dramatique et ses interprétations mémorables.', '1969-11-04', '/assets/people/actor_3.jpg'),
+(4, 'Anne Hathaway', 'Actrice américaine lauréate d''un Oscar, brillante dans les drames intimistes comme les superproductions.', '1982-11-12', '/assets/people/actor_4.jpg'),
+(5, 'Christian Bale', 'Acteur britannique réputé pour son dévouement total et ses métamorphoses physiques légendaires.', '1974-01-30', '/assets/people/actor_5.jpg'),
+(6, 'Heath Ledger', 'Légende australienne du cinéma dont l''interprétation du Joker demeure un sommet de l''art dramatique.', '1979-04-04', '/assets/people/actor_6.jpg'),
+(7, 'Bryan Cranston', 'Acteur et metteur en scène américain couronné de 6 Emmy Awards pour sa maîtrise du tragique et de la comédie.', '1956-03-07', '/assets/people/actor_7.jpg'),
+(8, 'Aaron Paul', 'Acteur américain triple lauréat des Emmy Awards, loué pour la sensibilité brute de son jeu d''acteur.', '1979-08-27', '/assets/people/actor_8.jpg'),
+(9, 'Pedro Pascal', 'Acteur américano-chilien incontournable, superstar internationale du grand et petit écran.', '1975-04-02', '/assets/people/actor_9.jpg'),
+(10, 'Bella Ramsey', 'Interprète britannique prodige, acclamée pour sa force dramatique et son authenticité poignante.', '2003-09-25', '/assets/people/actor_10.jpg'),
+(11, 'Millie Bobby Brown', 'Actrice et productrice britannique, icône mondiale révélée par la pop culture contemporaine.', '2004-02-19', '/assets/people/actor_11.jpg'),
+(12, 'David Harbour', 'Acteur américain généreux au talent puissant, alliant autorité naturelle et humanité touchante.', '1975-04-10', '/assets/people/actor_12.jpg'),
+(13, 'Keanu Reeves', 'Icône internationale adorée pour son aura héroïque et sa virtuosité dans le cinéma d''action.', '1964-09-02', '/assets/people/actor_13.jpg'),
+(14, 'Zendaya', 'Actrice américaine doublement récompensée aux Emmy Awards, référence d''élégance et d''émotion.', '1996-09-01', '/assets/people/actor_14.jpg'),
+(15, 'Timothée Chalamet', 'Acteur franco-américain virtuose nommé aux Oscars, prodige de sa génération au box-office mondial.', '1995-12-27', '/assets/people/actor_15.jpg'),
+(16, 'Morgan Freeman', 'Monstre sacré d''Hollywood à la voix mythique, symbole de sagesse et de dignité cinématographique.', '1937-06-01', '/assets/people/actor_16.jpg'),
+(17, 'Al Pacino', 'Légende vivante de l''histoire du 7ème art, titan des chefs-d''œuvre dramatiques du Nouvel Hollywood.', '1940-04-25', '/assets/people/actor_17.jpg'),
+(18, 'Margot Robbie', 'Actrice et productrice australienne superstar nommée aux Oscars, maîtresse du box-office contemporain.', '1990-07-02', '/assets/people/actor_18.jpg');
+
+-- 3. Réalisateurs (avec portraits officiels haute résolution)
+INSERT INTO director (id, name, bio, photo_url) VALUES
+(1, 'Christopher Nolan', 'Cinéaste visionnaire britannique récompensé aux Oscars, explorateur magistral du temps et de l''esprit humain.', '/assets/people/director_1.jpg'),
+(2, 'Denis Villeneuve', 'Auteur et réalisateur québécois majeur, maître de la science-fiction monumentale et sensorielle.', '/assets/people/director_2.jpg'),
+(3, 'Vince Gilligan', 'Scénariste et créateur de génie, orfèvre de la tension narrative et du suspense psychologique.', '/assets/people/director_3.jpg'),
+(4, 'The Duffer Brothers', 'Frères jumeaux créateurs et réalisateurs prodige d''œuvres fantastiques culte des temps modernes.', '/assets/people/director_4.jpg'),
+(5, 'Craig Mazin', 'Scénariste et réalisateur d''élite salué pour sa rigueur dramaturgique et son souffle tragique.', '/assets/people/director_5.jpg'),
+(6, 'Chad Stahelski', 'Réalisateur et chorégraphe révolutionnaire, créateur du standard moderne des cascades d''action.', '/assets/people/director_6.jpg'),
+(7, 'Frank Darabont', 'Cinéaste américain maître des grandes adaptations humanistes gravées dans l''histoire du cinéma.', '/assets/people/director_7.jpg'),
+(8, 'Francis Ford Coppola', 'Père fondateur du cinéma moderne et auteur de fresques intemporelles au panthéon du cinéma.', '/assets/people/director_8.jpg'),
+(9, 'Quentin Tarantino', 'Auteur culte et cinéphile absolu, récompensé aux Oscars pour ses dialogues ciselés et son style iconique.', '/assets/people/director_9.jpg'),
+(10, 'Greta Gerwig', 'Cinéaste audacieuse nommée aux Oscars, réinventant le blockbuster contemporain avec finesse et esprit.', '/assets/people/director_10.jpg');
+
+-- 4. Médias (32 Œuvres Majeures avec Affiches Officielles et Bandes-Annonces)
+INSERT INTO media (id, title, description, release_year, type, duration, language, country, minimum_age, poster_url, trailer_url, rental_price_per_day) VALUES
+(1, 'Inception', 'Dom Cobb est un voleur chevronné qui opère dans l''univers trouble de l''espionnage industriel via l''extraction de secrets dans les rêves. Pour effacer son casier et retrouver ses enfants, il doit réussir l''impossible : l''inception, implanter une idée dans l''esprit d''un héritier d''empire.', 2010, 'FILM', 148, 'Français', 'États-Unis', 12, '/assets/posters/1.jpg', 'https://www.youtube.com/watch?v=YoHD9XEInc0', 3.99),
+(2, 'Interstellar', 'Alors que la Terre se meurt et que les ressources s''épuisent, une équipe d''astronautes intrépides franchit un trou de ver apparu près de Saturne afin de trouver un nouveau foyer viable pour assurer la survie de l''espèce humaine à travers les étoiles.', 2014, 'FILM', 169, 'Français', 'États-Unis', 10, '/assets/posters/2.jpg', 'https://www.youtube.com/watch?v=zSWdZVtXT7E', 4.50),
+(3, 'The Dark Knight', 'Batman, le lieutenant Gordon et le procureur intègre Harvey Dent s''allient pour anéantir le crime organisé à Gotham City. Mais leur équilibre vacille sous les assauts chaotiques et dévastateurs d''un criminel psychopathe sans pitié : le Joker.', 2008, 'FILM', 152, 'Français', 'États-Unis', 12, '/assets/posters/3.jpg', 'https://www.youtube.com/watch?v=EXeTwQWrcwY', 3.50),
+(4, 'Oppenheimer', 'L''épopée biographique fascinante de J. Robert Oppenheimer, brillant physicien théoricien chargé de superviser le projet ultra-secret Manhattan à Los Alamos, conduisant à la création de la première arme nucléaire de l''Histoire humaine.', 2023, 'FILM', 180, 'Français', 'États-Unis', 12, '/assets/posters/4.jpg', 'https://www.youtube.com/watch?v=uYPbbksJxIg', 4.99),
+(5, 'Dune : Première Partie', 'L''héritier Paul Atreides arrive avec sa prestigieuse lignée sur la périlleuse planète désertique Arrakis, unique source de l''Épice. Trahi par l''Empereur et les cruels Harkonnen, Paul doit embrasser une prophétie colossale pour survivre.', 2021, 'FILM', 155, 'Français', 'États-Unis', 12, '/assets/posters/5.jpg', 'https://www.youtube.com/watch?v=8g18jFHCLXk', 4.20),
+(6, 'Dune : Deuxième Partie', 'Paul Atreides s''unit à Chani et au peuple Fremen pour mener la révolte et venger sa maison décimée. Tiraillé entre son amour sincère et les visions terrifiantes d''une guerre sainte galactique, il s''élève en souverain absolu d''Arrakis.', 2024, 'FILM', 166, 'Français', 'États-Unis', 12, '/assets/posters/6.jpg', 'https://www.youtube.com/watch?v=Way9Dexny3w', 5.50),
+(7, 'Breaking Bad', 'Professeur de chimie surqualifié apprenant qu''il est atteint d''un cancer incurable, Walter White s''associe à son ancien élève Jesse Pinkman pour fabriquer et écouler la méthamphétamine la plus pure du pays afin de mettre sa famille à l''abri du besoin.', 2008, 'SERIE', NULL, 'Français', 'États-Unis', 16, '/assets/posters/7.jpg', 'https://www.youtube.com/watch?v=HhesaQXLuRY', 6.00),
+(8, 'The Last of Us', 'Dans un monde post-apocalyptique ravagé par une mutation fongique destructrice, le contrebandier Joel se voit confier la mission d''escorter Ellie, une adolescente mystérieusement immunisée, à travers les ruines périlleuses des États-Unis.', 2023, 'SERIE', NULL, 'Français', 'États-Unis', 16, '/assets/posters/8.jpg', 'https://www.youtube.com/watch?v=uLtkt8BonwM', 6.50),
+(9, 'Stranger Things', 'Dans une paisible bourgade d''Indiana en 1983, la disparition inquiétante d''un jeune garçon dévoile l''existence d''expériences scientifiques secrètes, d''une dimension parallèle cauchemardesque et d''une fillette télékinésique dotée de pouvoirs extraordinaires.', 2016, 'SERIE', NULL, 'Français', 'États-Unis', 12, '/assets/posters/9.jpg', 'https://www.youtube.com/watch?v=b9EkMc79ZSU', 5.00),
+(10, 'John Wick : Chapitre 4', 'Le légendaire tueur à gages John Wick mène son ultime croisade contre la Haute Table à travers New York, Paris, Osaka et Berlin, affrontant de vieux amis devenus rivaux sous le regard impitoyable du redoutable Marquis de Gramont.', 2023, 'FILM', 169, 'Français', 'États-Unis', 16, '/assets/posters/10.jpg', 'https://www.youtube.com/watch?v=qEVUtrk8_B4', 4.50),
+(11, 'Les Évadés', 'Condamné à tort pour le meurtre de sa femme, le banquier Andy Dufresne affronte la dureté indicible de la prison de haute sécurité de Shawshank avec stoïcisme et tisse une profonde amitié avec Red, bâtissant patiemment sa rédemption.', 1994, 'FILM', 142, 'Français', 'États-Unis', 10, '/assets/posters/11.jpg', 'https://www.youtube.com/watch?v=PLl99DlL6b4', 2.99),
+(12, 'Le Parrain', 'L''immense saga tragique de la dynastie mafieuse Corleone à New York, dirigée d''une main de maître par le patriarche Don Vito, alors que son fils cadet Michael, héros de guerre réticent, est inexorablement aspiré dans l''engrenage sanglant du pouvoir.', 1972, 'FILM', 175, 'Français', 'États-Unis', 16, '/assets/posters/12.jpg', 'https://www.youtube.com/watch?v=sY1S349g33U', 3.20),
+(13, 'Pulp Fiction', 'Les péripéties truculentes et stylisées de deux tueurs à gages bavards, d''un boxeur insoumis, de la séduisante épouse d''un parrain du crime et d''un couple de braqueurs d''amateurs s''entrecroisent dans un ballet halluciné au cœur de Los Angeles.', 1994, 'FILM', 154, 'Français', 'États-Unis', 16, '/assets/posters/13.jpg', 'https://www.youtube.com/watch?v=s7EdQ4FqbhY', 3.00),
+(14, 'Barbie', 'À Barbie Land, tout est idéal et éclatant de rose. Mais frappée par une crise existentielle inattendue, Barbie et son fidèle compagnon Ken entreprennent un voyage initiatique vers le Monde Réel pour trouver les clés de sa conscience.', 2023, 'FILM', 114, 'Français', 'États-Unis', 0, '/assets/posters/14.jpg', 'https://www.youtube.com/watch?v=pBk4NYhWNMM', 4.00),
+(15, 'Better Call Saul', 'Avant d''endosser le costume clinquant de Saul Goodman pour Walter White, Jimmy McGill était un avocat besogneux au grand cœur naviguant entre éthique professionnelle, tentations d''arnaque et l''ombre pesante de son brillant frère Chuck.', 2015, 'SERIE', NULL, 'Français', 'États-Unis', 12, '/assets/posters/15.jpg', 'https://www.youtube.com/watch?v=HN4oydykJFc', 5.00),
+(16, 'Le Prestige', 'Dans le Londres victorien du XIXe siècle, deux illusionnistes autrefois complices se livrent une compétition féroce pour créer le tour de téléportation ultime, plongeant dans une spirale destructrice où la magie flirte avec la science de Nikola Tesla.', 2006, 'FILM', 130, 'Français', 'États-Unis', 12, '/assets/posters/16.jpg', 'https://www.youtube.com/watch?v=ijXruSzfGEc', 3.20),
+(17, 'Blade Runner 2049', 'Trente ans après les péripéties de Rick Deckard, l''officier K, un blade runner du LAPD, exhume un secret enfoui depuis des décennies capable de faire basculer ce qui reste de civilisation dans l''anarchie et se lance sur les traces de son prédécesseur.', 2017, 'FILM', 164, 'Français', 'États-Unis', 12, '/assets/posters/17.jpg', 'https://www.youtube.com/watch?v=gCcx85zbxz4', 3.80),
+(18, 'Premier Contact', 'Douze gigantesques monolithes extraterrestres apparaissent mystérieusement aux quatre coins du globe. La célèbre linguiste Louise Banks est recrutée par l''armée pour déchiffrer leur langage complexe avant qu''une guerre planétaire n''éclate.', 2016, 'FILM', 116, 'Français', 'États-Unis', 10, '/assets/posters/18.jpg', 'https://www.youtube.com/watch?v=tFMo3UJ4B4g', 3.50),
+(19, 'Django Unchained', 'Dans le sud esclavagiste américain, l''esclave Django s''associe au brillant chasseur de primes allemand Dr King Schultz. En échange de son aide, Schultz lui promet de l''entraîner et de l''aider à libérer son épouse Broomhilda des griffes d''un cruel propriétaire terrien.', 2012, 'FILM', 165, 'Français', 'États-Unis', 16, '/assets/posters/19.jpg', 'https://www.youtube.com/watch?v=0fUCuvNlOCg', 3.99),
+(20, 'Inglourious Basterds', 'En France occupée par les nazis, un groupe de soldats juifs américains mène des opérations impitoyables de représailles contre l''ennemi, tandis qu''une jeune propriétaire de cinéma planifie secrètement l''assassinat des hauts dignitaires du Troisième Reich.', 2009, 'FILM', 153, 'Français', 'États-Unis', 16, '/assets/posters/20.jpg', 'https://www.youtube.com/watch?v=KnrRy6kSFF0', 3.60),
+(21, 'Chernobyl', 'Le récit poignant et clinique des hommes et des femmes qui se sont sacrifiés pour sauver l''Europe d''un désastre inimaginable suite à l''explosion catastrophique du réacteur numéro 4 de la centrale nucléaire de Tchernobyl en avril 1986.', 2019, 'SERIE', NULL, 'Français', 'États-Unis', 16, '/assets/posters/21.jpg', 'https://www.youtube.com/watch?v=s9APLXM9Ei8', 4.80),
+(22, 'The Mandalorian', 'Après la chute de l''Empire galactique, un chasseur de primes mandalorien taiseux sillonne les confins de la galaxie. Lorsqu''il découvre que sa cible n''est autre qu''un enfant sensible à la Force, il choisit de briser le code pour le protéger.', 2019, 'SERIE', NULL, 'Français', 'États-Unis', 10, '/assets/posters/22.jpg', 'https://www.youtube.com/watch?v=aOC8E8R_N5c', 5.50),
+(23, 'Le Loup de Wall Street', 'L''ascension fulgurante, l''opulence démesurée et le déclin retentissant de Jordan Belfort, jeune courtier de Wall Street sans scrupule devenu multimillionnaire grâce à la manipulation financière et aux excès les plus délirants des années 90.', 2013, 'FILM', 180, 'Français', 'États-Unis', 16, '/assets/posters/23.jpg', 'https://www.youtube.com/watch?v=iszwuX1AK6A', 3.80),
+(24, 'Fight Club', 'Un employé de bureau anonyme miné par l''insomnie et le consumérisme fait la connaissance de Tyler Durden, fabriquant de savon charismatique. Ensemble, ils fondent un club clandestin de combat à mains nues qui se transforme en projet anarchiste d''envergure.', 1999, 'FILM', 139, 'Français', 'États-Unis', 16, '/assets/posters/24.jpg', 'https://www.youtube.com/watch?v=qtRKDV93gk8', 3.20),
+(25, 'Le Voyage de Chihiro', 'Chihiro, dix ans, s''aventure avec ses parents dans ce qui semble être un parc à thème abandonné. Lorsque la nuit tombe, ses parents se transforment en cochons et elle découvre un monde d''esprits extraordinaires où elle doit travailler pour survivre.', 2001, 'FILM', 125, 'Français', 'Japon', 0, '/assets/posters/25.jpg', 'https://www.youtube.com/watch?v=ByXuk9QqQkk', 2.80),
+(26, 'Spider-Man : New Generation', 'Après avoir été mordu par une araignée radioactive, l''adolescent Miles Morales découvre qu''il possède d''incroyables pouvoirs et doit faire équipe avec plusieurs Spider-Héros issus de réalités alternatives pour sauver le multivers d''un collapsus.', 2018, 'FILM', 117, 'Français', 'États-Unis', 0, '/assets/posters/26.jpg', 'https://www.youtube.com/watch?v=tg52up16eq0', 3.50),
+(27, 'Peaky Blinders', 'Dans l''Angleterre industrielle d''après-guerre à Birmingham en 1919, Tommy Shelby prend la tête du gang redoutable des Peaky Blinders, usant de ruse tactique, de violence calculée et d''ambition dévorante pour légitimer son empire familial.', 2013, 'SERIE', NULL, 'Français', 'Royaume-Uni', 16, '/assets/posters/27.jpg', 'https://www.youtube.com/watch?v=oVzVdvGIC7U', 5.50),
+(28, 'Succession', 'La fratrie Roy se dispute férocement le contrôle de Waystar RoyCo, l''un des plus puissants conglomérats mondiaux de médias et de divertissement, alors que l''état de santé de leur redoutable patriarche Logan commence à décliner.', 2018, 'SERIE', NULL, 'Français', 'États-Unis', 16, '/assets/posters/28.jpg', 'https://www.youtube.com/watch?v=OzYxJV_rmE8', 5.80),
+(29, 'Seven', 'À quelques jours de sa retraite, l''inspecteur vétéran William Somerset fait équipe avec le bouillonnant détective David Mills pour traquer un tueur en série méthodique qui orchestre ses macabres assassinats selon les sept péchés capitaux.', 1995, 'FILM', 127, 'Français', 'États-Unis', 16, '/assets/posters/29.jpg', 'https://www.youtube.com/watch?v=znmZoVkCjpI', 3.00),
+(30, 'Gladiator', 'Général romain légendaire adulé par ses troupes, Maximus est trahi lorsque l''infâme Commode assassine son propre père l''Empereur et massacre la famille de Maximus. Devenu esclave puis gladiateur dans l''arène, Maximus jure vengeance.', 2000, 'FILM', 155, 'Français', 'États-Unis', 12, '/assets/posters/30.jpg', 'https://www.youtube.com/watch?v=owK1qxDselE', 3.40),
+(31, 'Avatar : La Voie de l''eau', 'Installé avec sa famille sur Pandora au sein du clan Metkayina, Jake Sully doit reprendre les armes aux côtés de Neytiri pour protéger leur peuple marin contre une impitoyable expédition militaire humaine revenue pour anéantir leur sanctuaire.', 2022, 'FILM', 192, 'Français', 'États-Unis', 10, '/assets/posters/31.jpg', 'https://www.youtube.com/watch?v=d9MyW72ELq0', 4.50),
+(32, 'Arcane', 'Au cœur du violent conflit opposant la cité utopique de Piltover et les bas-fonds crépusculaires de Zaun, deux sœurs inséparables, Vi et Powder, se retrouvent tragiquement dressées l''une contre l''autre par des technologies magiques divergentes.', 2021, 'SERIE', NULL, 'Français', 'États-Unis', 12, '/assets/posters/32.jpg', 'https://www.youtube.com/watch?v=fXmAurh012s', 5.00);
+
+-- 5. Media_Genre (Associations)
+INSERT INTO media_genre (media_id, genre_id) VALUES
+(1, 1), (1, 2), (1, 5),
+(2, 2), (2, 3), (2, 6),
+(3, 1), (3, 5), (3, 9),
+(4, 3),
+(5, 2), (5, 6), (5, 3),
+(6, 2), (6, 6), (6, 1),
+(7, 3), (7, 5), (7, 9),
+(8, 1), (8, 3), (8, 2),
+(9, 2), (9, 5), (9, 8),
+(10, 1), (10, 5), (10, 9),
+(11, 3), (11, 9),
+(12, 3), (12, 9),
+(13, 3), (13, 9), (13, 4),
+(14, 4), (14, 6), (14, 8),
+(15, 3), (15, 9), (15, 4),
+(16, 3), (16, 5), (16, 8),
+(17, 2), (17, 5), (17, 3),
+(18, 2), (18, 3),
+(19, 1), (19, 3),
+(20, 1), (20, 3), (20, 4),
+(21, 3), (21, 5),
+(22, 1), (22, 2), (22, 6),
+(23, 3), (23, 4), (23, 9),
+(24, 3), (24, 5),
+(25, 7), (25, 8), (25, 6),
+(26, 7), (26, 1), (26, 2),
+(27, 3), (27, 9),
+(28, 3),
+(29, 5), (29, 9), (29, 3),
+(30, 1), (30, 3), (30, 6),
+(31, 2), (31, 1), (31, 6),
+(32, 7), (32, 1), (32, 2);
+
+-- 6. Media_Actor (Distribution et rôles)
+INSERT INTO media_actor (media_id, actor_id, character_name) VALUES
+(1, 1, 'Dom Cobb'),
+(1, 2, 'Robert Fischer'),
+(2, 3, 'Joseph Cooper'),
+(2, 4, 'Dr. Amelia Brand'),
+(3, 5, 'Bruce Wayne / Batman'),
+(3, 6, 'Le Joker'),
+(3, 2, 'Dr. Jonathan Crane / L''Épouvantail'),
+(4, 2, 'J. Robert Oppenheimer'),
+(5, 15, 'Paul Atreides'),
+(5, 14, 'Chani'),
+(6, 15, 'Paul Atreides'),
+(6, 14, 'Chani'),
+(7, 7, 'Walter White / Heisenberg'),
+(7, 8, 'Jesse Pinkman'),
+(8, 9, 'Joel Miller'),
+(8, 10, 'Ellie Williams'),
+(9, 11, 'Eleven'),
+(9, 12, 'Jim Hopper'),
+(10, 13, 'John Wick'),
+(11, 16, 'Ellis Boyd ''Red'' Redding'),
+(12, 17, 'Michael Corleone'),
+(14, 18, 'Barbie'),
+(15, 7, 'Walter White (Invité spécial)'),
+(16, 5, 'Alfred Borden'),
+(19, 1, 'Calvin J. Candie'),
+(22, 9, 'Din Djarin / Le Mandalorien'),
+(23, 1, 'Jordan Belfort'),
+(23, 3, 'Mark Hanna'),
+(23, 18, 'Naomi Lapaglia'),
+(27, 2, 'Thomas Shelby'),
+(29, 16, 'Inspecteur William Somerset');
+
+-- 7. Media_Director (Réalisateurs)
+INSERT INTO media_director (media_id, director_id) VALUES
+(1, 1), (2, 1), (3, 1), (4, 1),
+(5, 2), (6, 2),
+(7, 3),
+(8, 5),
+(9, 4),
+(10, 6),
+(11, 7),
+(12, 8),
+(13, 9),
+(14, 10),
+(15, 3),
+(16, 1),
+(17, 2),
+(18, 2),
+(19, 9),
+(20, 9),
+(21, 5);
+
+
+-- 8. Saisons des Séries (US012, US034)
+INSERT INTO season (id, media_id, season_number, title, release_year) VALUES
+(1, 7, 1, 'Saison 1', 2008),
+(2, 7, 2, 'Saison 2', 2009),
+(3, 8, 1, 'Saison 1', 2023),
+(4, 9, 1, 'Saison 1', 2016),
+(5, 15, 1, 'Saison 1', 2015),
+(6, 21, 1, 'Mini-Série', 2019),
+(7, 22, 1, 'Saison 1', 2019),
+(8, 27, 1, 'Saison 1', 2013),
+(9, 28, 1, 'Saison 1', 2018),
+(10, 32, 1, 'Saison 1', 2021);
+
+-- 9. Épisodes des Séries (US012, US034)
+INSERT INTO episode (season_id, episode_number, title, description, duration, video_key) VALUES
+-- Breaking Bad (Saison 1)
+(1, 1, 'Chute libre (Pilot)', 'Un professeur de chimie atteint d''un cancer en phase terminale s''associe à un ancien élève pour fabriquer de la méthamphétamine.', 58, 'breaking_bad_s01e01.mp4'),
+(1, 2, 'Le Choix', 'Walter et Jesse doivent se débarrasser des corps de deux trafiquants dans des circonstances désespérées.', 48, 'breaking_bad_s01e02.mp4'),
+(1, 3, 'Dérapage', 'Walter doit prendre une décision capitale concernant la survie d''un prisonnier détenu dans la cave de Jesse.', 48, 'breaking_bad_s01e03.mp4'),
+(1, 4, 'Retour aux sources', 'Walter révèle son diagnostic de cancer à sa famille lors d''un barbecue sous tension.', 48, 'breaking_bad_s01e04.mp4'),
+(1, 5, 'Vivre ou survivre', 'Walter rejette l''aide financière de ses anciens collègues et choisit de continuer son business clandestin.', 48, 'breaking_bad_s01e05.mp4'),
+(1, 6, 'Bluff', 'Walter adopte le pseudonyme Heisenberg et affronte le dangereux baron de la drogue Tuco Salamanca.', 48, 'breaking_bad_s01e06.mp4'),
+(1, 7, 'Le Fruit défendu', 'Walter et Jesse concluent un accord avec Tuco mais découvrent rapidement sa folie meurtrière.', 48, 'breaking_bad_s01e07.mp4'),
+
+-- The Last of Us (Saison 1)
+(3, 1, 'Quand tu es perdu dans l''obscurité', 'Vingt ans après qu''une pandémie a ravagé le monde, Joel, un survivant endurci, est engagé pour faire évader Ellie d''une zone de quarantaine.', 81, 'the_last_of_us_s01e01.mp4'),
+(3, 2, 'Infecté', 'Joel, Tess et Ellie traversent les ruines inondées et infestées de Boston pour atteindre le Capitole.', 53, 'the_last_of_us_s01e02.mp4'),
+(3, 3, 'Long, Long Time', 'L''histoire émouvante de Bill, un survivaliste solitaire, et de Frank, qui trouve refuge dans sa ville fortifiée.', 75, 'the_last_of_us_s01e03.mp4'),
+(3, 4, 'Pied à terre', 'Joel et Ellie sont pris dans une embuscade mortelle à Kansas City tendue par un groupe rebelle impitoyable.', 45, 'the_last_of_us_s01e04.mp4'),
+(3, 5, 'Endurer et survivre', 'Joel et Ellie s''associent aux frères Henry et Sam pour fuir la ville par les tunnels souterrains.', 59, 'the_last_of_us_s01e05.mp4'),
+
+-- Stranger Things (Saison 1)
+(4, 1, 'La Disparition de Will Byers', 'En 1983 à Hawkins, un jeune garçon disparaît mystérieusement tandis qu''une étrange fillette aux pouvoirs télékinétiques apparaît.', 49, 'stranger_things_s01e01.mp4'),
+(4, 2, 'La Barjot de Maple Street', 'Lucas, Mike et Dustin cachent Onze chez Mike, tandis que Joyce reçoit un appel téléphonique angoissant.', 56, 'stranger_things_s01e02.mp4'),
+(4, 3, 'Petit Papa Noël', 'Joyce installe des guirlandes lumineuses pour communiquer avec Will. Hopper découvre des anomalies au laboratoire national.', 52, 'stranger_things_s01e03.mp4'),
+(4, 4, 'Le Corps', 'Refusant de croire que le corps repêché est celui de son fils, Joyce persiste. Onze prouve que Will est toujours vivant.', 51, 'stranger_things_s01e04.mp4'),
+
+-- Chernobyl (Mini-Série)
+(6, 1, '1:23:45', 'Le 26 avril 1986, le réacteur 4 de la centrale de Tchernobyl explose, déclenchant la pire catastrophe nucléaire de l''histoire.', 59, 'chernobyl_ep01.mp4'),
+(6, 2, 'Veuillez garder votre calme', 'Valery Legasov et Boris Shcherbina sont envoyés sur place pour évaluer l''ampleur du désastre et empêcher une seconde déflagration.', 65, 'chernobyl_ep02.mp4'),
+(6, 3, 'Terre ouverte', 'Des mineurs de charbon creusent un tunnel sous le réacteur brûlant au péril de leur vie.', 62, 'chernobyl_ep03.mp4'),
+
+-- Arcane (Saison 1)
+(10, 1, 'Entrez dans la danse', 'Deux sœurs orphelines, Vi et Powder, mènent un cambriolage dans un laboratoire huppé de la haute cité de Piltover.', 43, 'arcane_s01e01.mp4'),
+(10, 2, 'Certains mystères ne devraient pas être percés', 'L''inventeur Jayce risque son avenir pour exploiter la magie Hextech sous l''égide du professeur Heimerdinger.', 41, 'arcane_s01e02.mp4'),
+(10, 3, 'Cette violence crapuleuse nécessaire au changement', 'Silco lance son assaut sur Zaun tandis que Vander tente de sauver sa famille adoptive.', 44, 'arcane_s01e03.mp4');

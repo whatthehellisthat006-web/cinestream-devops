@@ -1,0 +1,52 @@
+<div class="people-page-container container">
+  <div class="people-header">
+    <div class="header-content">
+      <span class="badge-tag">{{ type === 'actors' ? 'Distribution' : 'Mise en scène' }}</span>
+      <h1 class="page-title">{{ type === 'actors' ? 'Acteurs & Actrices' : 'Réalisateurs' }}</h1>
+      <p class="page-desc">
+        {{ type === 'actors' 
+            ? 'Découvrez les talents à l\'écran de CineStream et explorez leur filmographie complète.' 
+            : 'Explorez les créateurs, visionnaires et cinéastes des plus grands films et séries.' }}
+      </p>
+    </div>
+
+    <!-- Search Input -->
+    <div class="search-box">
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        [placeholder]="type === 'actors' ? 'Rechercher un acteur...' : 'Rechercher un réalisateur...'"
+        class="search-input"
+      />
+    </div>
+  </div>
+
+  <div *ngIf="loading()" class="loading-state">
+    <div class="spinner"></div>
+    <p>Chargement des talents...</p>
+  </div>
+
+  <div *ngIf="!loading() && filteredPeople.length > 0" class="people-grid">
+    <a
+      *ngFor="let person of filteredPeople"
+      [routerLink]="type === 'actors' ? ['/actors', person.id] : ['/directors', person.id]"
+      class="person-card"
+    >
+      <div class="avatar-wrap">
+        <img
+          [src]="person.photoUrl || (type === 'actors' ? '/assets/people/actor_1.jpg' : '/assets/people/director_1.jpg')"
+          [alt]="person.name"
+          class="person-img"
+        />
+      </div>
+      <div class="person-info">
+        <h3 class="person-name">{{ person.name }}</h3>
+        <span class="view-link">Voir la filmographie &rarr;</span>
+      </div>
+    </a>
+  </div>
+
+  <div *ngIf="!loading() && filteredPeople.length === 0" class="empty-state">
+    <p>Aucun résultat pour "{{ searchQuery }}".</p>
+  </div>
+</div>

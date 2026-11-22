@@ -1,0 +1,124 @@
+<header class="navbar">
+  <div class="container navbar-content">
+    <div class="navbar-left">
+      <a routerLink="/" class="logo">
+        <div class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+            <path d="M4 4h4v16H4V4zm6 0h4v16h-4V4zm6 0h4v16h-4V4z"/>
+          </svg>
+        </div>
+        <span class="logo-text">Cine<span class="logo-accent">Stream</span><span class="logo-dot"></span></span>
+      </a>
+
+      <nav class="nav-links">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
+          <span>Accueil</span>
+        </a>
+        <a routerLink="/films" routerLinkActive="active" class="nav-link">
+          <span>Films</span>
+        </a>
+        <a routerLink="/series" routerLinkActive="active" class="nav-link">
+          <span>Séries</span>
+        </a>
+        <a routerLink="/genres" routerLinkActive="active" class="nav-link">
+          <span>Genres</span>
+        </a>
+        <a routerLink="/actors" routerLinkActive="active" class="nav-link">
+          <span>Acteurs</span>
+        </a>
+        <a routerLink="/directors" routerLinkActive="active" class="nav-link">
+          <span>Réalisateurs</span>
+        </a>
+
+        <!-- Member Links when authenticated -->
+        <a *ngIf="authService.isLoggedIn()" routerLink="/rentals" routerLinkActive="active" class="nav-link">
+          <span>Mes locations</span>
+        </a>
+        <a *ngIf="authService.isLoggedIn()" routerLink="/favorites" routerLinkActive="active" class="nav-link">
+          <span>Favoris</span>
+        </a>
+        <a *ngIf="authService.isAdmin()" routerLink="/admin" routerLinkActive="active" class="nav-link nav-link-admin">
+          <span>Administration</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="navbar-right">
+      <div class="navbar-actions">
+        <!-- Direct Quick Search Icon link to Films page -->
+        <a routerLink="/films" class="icon-btn" title="Rechercher des films">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="19" height="19">
+            <circle cx="11" cy="11" r="8"/>
+            <path stroke-linecap="round" d="M21 21l-4.35-4.35"/>
+          </svg>
+        </a>
+
+        <!-- Guest state -->
+        <div *ngIf="!authService.isLoggedIn()" class="user-actions">
+          <button type="button" class="btn-login" (click)="openLogin()">
+            Connexion
+          </button>
+          <button type="button" class="btn-signup" (click)="openRegister()">
+            S'inscrire
+          </button>
+        </div>
+
+        <!-- Authenticated state (US020: Wallet balance badge & User Dropdown) -->
+        <div *ngIf="authService.isLoggedIn()" class="user-logged-wrap">
+          <!-- Wallet balance badge -->
+          <a routerLink="/profile" class="wallet-badge-btn" title="Accéder au portefeuille">
+            <svg class="wallet-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+            </svg>
+            <span class="wallet-amount">{{ (wallet()?.balance ?? 0) | number:'1.2-2' }} €</span>
+          </a>
+
+          <!-- User Menu Trigger -->
+          <div class="dropdown-container">
+            <button class="user-avatar-btn" (click)="toggleDropdown()">
+              <span class="avatar-initial">{{ authService.currentUser()?.email?.charAt(0)?.toUpperCase() }}</span>
+              <span class="user-name-label">{{ authService.currentUser()?.email?.split('@')?.[0] }}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                <path d="M6 9l6 6 6-6"/>
+              </svg>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div *ngIf="showUserDropdown()" class="dropdown-menu">
+              <div class="dropdown-header">
+                <span class="dropdown-email">{{ authService.currentUser()?.email }}</span>
+                <span class="dropdown-role">{{ authService.currentUser()?.role }}</span>
+              </div>
+              <hr class="dropdown-divider" />
+              <a routerLink="/profile" (click)="showUserDropdown.set(false)" class="dropdown-item">
+                Mon Profil & Portefeuille
+              </a>
+              <a routerLink="/rentals" (click)="showUserDropdown.set(false)" class="dropdown-item">
+                Mes Locations en cours
+              </a>
+              <a routerLink="/favorites" (click)="showUserDropdown.set(false)" class="dropdown-item">
+                Mes Titres Favoris
+              </a>
+              <a *ngIf="authService.isAdmin()" routerLink="/admin" (click)="showUserDropdown.set(false)" class="dropdown-item admin-item">
+                Panneau Administration
+              </a>
+              <hr class="dropdown-divider" />
+              <button (click)="logout()" class="dropdown-item logout-btn">
+                Déconnexion
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Auth Modal (Login / Register) -->
+<app-auth-modal *ngIf="showAuthModal()" (close)="closeAuthModal()"></app-auth-modal>
+
+<!-- Session Expired Toast -->
+<div *ngIf="sessionExpiredToast()" class="session-toast">
+  <span class="session-toast-icon">⚠️</span>
+  Votre session a expiré. Veuillez vous reconnecter.
+</div>
