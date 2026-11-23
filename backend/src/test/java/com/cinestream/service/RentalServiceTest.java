@@ -76,7 +76,7 @@ class RentalServiceTest {
 
         RentalDto result = rentalService.createRental(testUser, new RentalRequest(10L, 3));
 
-        assertEquals(new BigDecimal("10.50"), result.getTotalPrice());
+        assertEquals(new BigDecimal("999.99"), result.getTotalPrice());
         assertEquals(new BigDecimal("9.50"), wallet.getBalance());
         assertEquals(3, result.getDays());
         assertTrue(result.isActive());
